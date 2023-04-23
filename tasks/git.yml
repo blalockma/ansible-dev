@@ -1,0 +1,14 @@
+- name: Github global user name
+  git_config:
+    name: user.name
+    scope: global
+    value: "Mason Blalock"
+  tags:
+  - git
+- name: Github global user email
+  git_config:
+    name: user.email
+    scope: global
+    value: "15042748+blalockma@users.noreply.github.com"
+  tags:
+  - git

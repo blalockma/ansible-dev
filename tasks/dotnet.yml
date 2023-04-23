@@ -42,3 +42,11 @@
     update_cache: yes
   tags:
   - dotnet
+- name: Install cred provider
+  shell: wget -qO- https://aka.ms/install-artifacts-credprovider.sh | bash
+  tags:
+  - dotnet
+- name: Install azure cli
+  shell: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+  tags:
+  - dotnet
