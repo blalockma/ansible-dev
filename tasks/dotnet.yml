@@ -1,0 +1,36 @@
+- name: Add an ubuntu apt key
+  ansible.builtin.apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+  tags:
+  - dotnet
+- name: Add dotnet source
+  shell: sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-focal-prod focal main" > /etc/apt/sources.list.d/dotnetdev.list'
+  tags:
+  - dotnet
+- name: Add ubuntu source
+  shell: echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" | tee /etc/apt/sources.list.d/mono-official-stable.list
+  tags:
+  - dotnet
+- name: Trust microsoft keys
+  shell: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+  tags:
+  - dotnet
+- name: Retrieve microsoft package
+  shell: wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+  tags:
+  - dotnet
+- name: Install microsoft package
+  shell: dpkg -i packages-microsoft-prod.deb
+  tags:
+  - dotnet
+- name: Cleanup microsoft package
+  shell: rm packages-microsoft-prod.deb
+  tags:
+  - dotnet
+- name: Install dotnet sdk 6.0
+  apt:
+    name: dotnet-sdk-6.0
+    update_cache: yes
+  tags:
+  - dotnet
