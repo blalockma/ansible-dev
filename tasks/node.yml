@@ -1,15 +1,13 @@
-- name: Install node
-  apt:
-    name: ['nodejs', 'npm']
+- name: Install nvm
+  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
   tags:
   - node
-- name: Install node manager
-  npm:
-    name: n
-    global: true
-  tags:
-  - node
-- name: Install node version 20
-  shell: n 20
+- name: Install node LTS
+  shell: |
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm install --lts
   tags:
   - node

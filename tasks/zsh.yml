@@ -1,9 +1,11 @@
 - name: Install zsh
+  become: true
   apt: name=zsh
   tags:
   - zsh
 - name: Change shell
-  shell: chsh -s `which zsh`
+  become: true
+  shell: "chsh -s `which zsh` mason"
   tags:
   - zsh
 - name: Install ohmyzsh
