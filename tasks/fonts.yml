@@ -1,0 +1,20 @@
+- name: Ensure fonts directory exists
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.fonts"
+    state: directory
+  tags:
+  - fonts
+- name: Check if Caskaydia Cove exists
+  shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Caskaydia*Cove*"
+  register: caskaydia_exists
+  ignore_errors: yes
+  tags:
+  - fonts
+- name: Download Caskaydia Cove
+  when: caskaydia_exists is failed
+  unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CascadiaCode.zip
+    dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+    remote_src: yes
+  tags:
+  - fonts

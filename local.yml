@@ -16,3 +16,4 @@
   - include: tasks/node.yml
   - include: tasks/dotnet.yml
   - include: tasks/git.yml
+  - include: tasks/fonts.yml
