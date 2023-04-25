@@ -17,3 +17,4 @@
   - include: tasks/dotnet.yml
   - include: tasks/git.yml
   - include: tasks/fonts.yml
+  - include: tasks/docker.yml

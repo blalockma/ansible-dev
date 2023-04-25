@@ -3,11 +3,13 @@
   apt: name=zsh
   tags:
   - zsh
+
 - name: Change shell
   become: true
-  shell: "chsh -s `which zsh` mason"
+  shell: "chsh -s `which zsh` {{ ansible_user_id }}"
   tags:
   - zsh
+
 - name: Install ohmyzsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   tags:

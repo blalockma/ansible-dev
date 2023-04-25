@@ -20,5 +20,4 @@ USER mason
 WORKDIR /home/mason
 
 FROM user
-COPY . ./ansible-dev
-CMD ["sh", "-c", "ansible-playbook $TAGS ansible-dev/local.yml"]
+COPY --chown=mason:mason . ./ansible-dev
