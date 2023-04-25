@@ -4,10 +4,14 @@
     dest: "{{ lookup('env', 'HOME') }}/dotfiles"
   tags:
   - dotfiles
+
 - name: Remove old .zshrc
-  shell: rm {{ lookup('env', 'HOME') }}/.zshrc
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.zshrc"
+    state: absent
   tags:
   - dotfiles
+
 - name: Symlink all dotfiles
   shell: "./setup-env.sh"
   args:
