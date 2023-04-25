@@ -1,3 +1,10 @@
+- name: Install stow (setup-env.sh dependency)
+  become: true
+  apt:
+    name: stow
+  tags:
+  - dotfiles
+
 - name: Clone dotfiles
   git:
     repo: "https://github.com/blalockma/dotfiles.git"

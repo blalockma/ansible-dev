@@ -1,6 +1,6 @@
 - name: Install core tools
   become: true
   apt:
-    name: ["gnupg", "ca-certificates", "unzip", "mono-devel", "fzf", "silversearcher-ag", "software-properties-common", "ripgrep", "gcc", "make", "g++", "tmux", "stow", "cmake", "ninja-build", "gettext"]
+    name: ["gnupg", "ca-certificates", "unzip", "mono-devel", "fzf", "silversearcher-ag", "software-properties-common", "ripgrep", "gcc", "make", "g++", "tmux", "curl", "wget", "git", "build-essential"]
   tags:
   - core
