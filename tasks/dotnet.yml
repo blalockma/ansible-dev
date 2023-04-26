@@ -1,29 +1,3 @@
-- name: Add an ubuntu apt key
-  become: true
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-  tags:
-  - dotnet
-
-- name: Add dotnet source
-  become: true
-  shell: sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-focal-prod focal main" > /etc/apt/sources.list.d/dotnetdev.list'
-  tags:
-  - dotnet
-
-- name: Add ubuntu source
-  become: true
-  shell: echo "deb https://download.mono-project.com/repo/ubuntu stable-focal main" | tee /etc/apt/sources.list.d/mono-official-stable.list
-  tags:
-  - dotnet
-
-- name: Trust microsoft keys
-  become: true
-  shell: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-  tags:
-  - dotnet
-
 - name: Install microsoft package
   become: true
   apt:
